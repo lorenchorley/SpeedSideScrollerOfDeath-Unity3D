@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour 
 {
@@ -18,9 +19,12 @@ public class CameraController : MonoBehaviour
     public LosingLine LosingLine;
     public FinishLine FinishLine;
 
+    public Button RestartButton;
+
     public void Start()
 	{
 		mycam = GetComponent<Camera> ();
+        RestartButton.gameObject.SetActive(false);
 	}
 
 	public void Update()
@@ -45,12 +49,16 @@ public class CameraController : MonoBehaviour
         if (Player.position.x <= leftmostPosition) {
 
             LosingLine.TriggerNarration();
-                
+            RestartButton.gameObject.SetActive(true);
+            Player.GetComponent<PlayerController>().enabled = false;
+
             enabled = false;
             return;
         } else if (Player.position.x >= rightmostPoint.position.x) {
 
             FinishLine.TriggerNarration();
+            RestartButton.gameObject.SetActive(true);
+            Player.GetComponent<PlayerController>().enabled = false;
 
             enabled = false;
             return;

@@ -57,7 +57,6 @@ namespace Narrate {
                 }
             } else if (instance != this)
                 Destroy(gameObject);
-            DontDestroyOnLoad(this);
             clipQueue = new List<Narration>();
             interrupt = false;
             if (pressToContinue)
